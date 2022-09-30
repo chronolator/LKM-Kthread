@@ -1,7 +1,7 @@
 # LKM-Kthread
-Linux Kernel Module (LKM) example of using kthreads.
-<br/><br/>
 Kernel Version: 2.6.x / 3.x / 4.x / 5.x  
+<br/><br/>
+Linux Kernel Module (LKM) example of using kthreads.
 
 ## Dependencies
 Ensure kernel headers, kernel dev packagesm and gcc is installed before building.  
@@ -39,6 +39,7 @@ insmod ./kthread.ko
 
 To view the kthread output:  
 ```
+dmesg --clear
 dmesg -T --color
 ```
 
