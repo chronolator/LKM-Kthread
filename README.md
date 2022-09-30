@@ -32,6 +32,11 @@ Build the module:
 make
 ```
 
+Clear dmesg:
+```
+dmesg --clear
+```
+
 Load the module as root:  
 ```
 insmod ./kthread.ko
@@ -39,7 +44,6 @@ insmod ./kthread.ko
 
 To view the kthread output:  
 ```
-dmesg --clear
 dmesg -T --color
 ```
 
