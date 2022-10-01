@@ -26,6 +26,8 @@ static int kthread_func(void *arg) {
 }
 
 static int __init run_init(void) {
+    printk(KERN_INFO "Kthread-init: Initializing module\n");
+    
     struct task_struct *ts1;
     struct task_struct *ts2;
     int err;
@@ -56,7 +58,7 @@ static int __init run_init(void) {
 }
 
 static void __exit run_exit(void) {
-    printk(KERN_INFO "Exiting the module\n");
+    printk(KERN_INFO "Kthread-exit: Exiting module\n");
 }
 
 module_init(run_init);
