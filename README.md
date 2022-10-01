@@ -1,6 +1,5 @@
 # LKM-Kthread
 Kernel Version: 2.6.x / 3.x / 4.x / 5.x  
-<br/><br/>
 Linux Kernel Module (LKM) example of using kthreads.
 
 ## Dependencies
