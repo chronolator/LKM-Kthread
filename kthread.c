@@ -7,21 +7,21 @@
 #define LICENSE		"GPL"
 #define AUTHOR		"Chronolator"
 #define DESCRIPTION	"Simple lkm that demonstrates the creation of 2 kernel threads"
-#define VERSION 	"0.01"
+#define VERSION 	"0.02"
 
 MODULE_LICENSE(LICENSE);
 MODULE_AUTHOR(AUTHOR);
 MODULE_DESCRIPTION(DESCRIPTION);
 MODULE_VERSION(VERSION);
 
-static int kthread_func(void *arg) {
+static int func_kthread(void *arg) {
     /* Every kthread has a struct task_struct associated with it which is it's identifier.
     * Whenever a thread is schedule for execution, the kernel sets "current" pointer to 
     * it's struct task_struct.
     * current->comm is the name of the command that caused creation of this thread
     * current->pid is the process of currently executing thread 
     */
-    printk(KERN_INFO "Kthread-func: %s[PID = %d]\n", current->comm, current->pid);
+    printk(KERN_INFO "Func-kthread: %s[PID = %d]\n", current->comm, current->pid);
     return 0;
 }
 
@@ -37,7 +37,7 @@ static int __init run_init(void) {
     /*struct task_struct *kthread_create(int (*threadfn)(void *data), void *data,  *const char *namefmt, ...);
     * This function creates a kernel thread and starts the thread.
     */
-    ts1 = kthread_run(kthread_func, NULL, "kthread-1");
+    ts1 = kthread_run(func_kthread, NULL, "kthread-1");
     if (IS_ERR(ts1)) {
         printk(KERN_INFO "ERROR: Cannot create kthread ts1\n");
         err = PTR_ERR(ts1);
@@ -45,7 +45,7 @@ static int __init run_init(void) {
         return err;
     }
 
-    ts2 = kthread_run(kthread_func, NULL, "kthread-2");
+    ts2 = kthread_run(func_kthread, NULL, "kthread-2");
     if (IS_ERR(ts2)) {
         printk(KERN_INFO "ERROR: Cannot create kthread ts2\n");
         err = PTR_ERR(ts2);
